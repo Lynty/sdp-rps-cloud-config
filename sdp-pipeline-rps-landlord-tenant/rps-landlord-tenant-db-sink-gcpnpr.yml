@@ -1,0 +1,208 @@
+spring:
+  jpa:
+    generate-ddl: false
+    properties:
+      hibernate:
+        default_schema: courtdb
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: "redacted:postgresql://10.10.10.10:5474/redacted"
+    username: criminaldb_app
+    password: "REDACTED"
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximumPoolSize: 5
+      minimumIdle: 0
+  cloud:
+    function:
+      definition: insert;update;insertCase;insertTenant;insertHistory;insertSsn;suppress
+    stream:
+      schema:
+        avro:
+          schema-locations:
+            - classpath:avro/global-v1.avsc
+            - classpath:avro/case-history-v1.avsc
+            - classpath:avro/flat-global-v1.avsc
+      bindings:
+        insert-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.insert-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        insertCase-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.case-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        insertTenant-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.tenant-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        insertHistory-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.history-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        insertSsn-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.ssn-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        update-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.update-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 4
+        suppress-in-0:
+          group: ${kafka-properties.group}
+          destination: ${kafka-properties.suppress-topic}
+          contentType: application/*+avro
+          consumer:
+            useNativeDecoding: true
+            concurrency: 2
+      kafka:
+        binder:
+          brokers: ${kafka-properties.kafka-brokers}
+          consumerProperties:
+            schema.registry.url: ${kafka-properties.schema-registry-path}
+            value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            specific.avro.reader: true
+            request.timeout.ms: 70000
+            isolation.level: read_committed
+            auto.offset.reset: earliest
+            max.poll.interval.ms: 2400000
+            session.timeout.ms: 28000
+            max.partition.fetch.bytes: ${kafka-properties.message-size}
+          configuration:
+            security.protocol: SASL_SSL
+            sasl.mechanism: GSSAPI
+            sasl.kerberos.service.name: kafka
+            sasl.jaas.config: com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab="/home/vcap/app/BOOT-INF/classes/secure/npr-app-rps-svc.keytab" principal="npr-app-rps-svc@IDAP.REDACTED.COM";
+        bindings:
+          insert-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          update-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          insertCase-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          insertTenant-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          insertHistory-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          insertSsn-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+          suppress-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: archive-error-rps-lt.gcpnpr
+              autoCommitOnError: true
+              dlq-producer-properties:
+                configuration:
+                  schema.registry.url: ${kafka-properties.schema-registry-path}
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+                  max.request.size: 15728640
+                  enable.idempotence: true
+                  acks: all
+                  retries: 2147483647
+
+kafka-properties:
+  schema-registry-path: https://127.0.0.1:9092
+  kafka-brokers: npr-kafka-blue-broker-1.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-2.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-3.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-4.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-5.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-6.kafka.npr.cloud.redacteddata.com:9093
+  insert-topic: archive-insert-rps-lt.gcpnpr
+  case-topic: archive-case-rps-lt.gcpnpr
+  tenant-topic: archive-tenant-rps-lt.gcpnpr
+  history-topic: archive-history-rps-lt.gcpnpr
+  ssn-topic: archive-ssn-rps-lt.gcpnpr
+  update-topic: archive-update-rps-lt.gcpnpr
+  suppress-topic: archive-rejected-rps-lt.gcpnpr
+  group: rps-landlord-tenant-db-sink-group-gcpnpr
+  message-size: 15728640
