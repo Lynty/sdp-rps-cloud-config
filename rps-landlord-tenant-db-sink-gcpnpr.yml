@@ -195,7 +195,7 @@ spring:
                   retries: 2147483647
 
 kafka-properties:
-  schema-registry-path: https://127.0.0.1:9092
+  schema-registry-path: kafka:9092
   kafka-brokers: kafka:9092
   insert-topic: archive-insert-rps-lt.gcpnpr
   case-topic: archive-case-rps-lt.gcpnpr
