@@ -90,10 +90,10 @@ spring:
             session.timeout.ms: 28000
             max.partition.fetch.bytes: ${kafka-properties.message-size}
           configuration:
-            security.protocol: SASL_SSL
-            sasl.mechanism: GSSAPI
-            sasl.kerberos.service.name: kafka
-            sasl.jaas.config: com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab="/home/vcap/app/BOOT-INF/classes/secure/npr-app-rps-svc.keytab" principal="npr-app-rps-svc@IDAP.REDACTED.COM";
+            security.protocol: PLAINTEXT
+              #            sasl.mechanism: GSSAPI
+              #            sasl.kerberos.service.name: kafka
+              #            sasl.jaas.config: com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab="/home/vcap/app/BOOT-INF/classes/secure/npr-app-rps-svc.keytab" principal="npr-app-rps-svc@IDAP.REDACTED.COM";
         bindings:
           insert-in-0:
             consumer:
