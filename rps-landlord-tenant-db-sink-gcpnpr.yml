@@ -196,7 +196,7 @@ spring:
 
 kafka-properties:
   schema-registry-path: https://127.0.0.1:9092
-  kafka-brokers: npr-kafka-blue-broker-1.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-2.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-3.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-4.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-5.kafka.npr.cloud.redacteddata.com:9093, npr-kafka-blue-broker-6.kafka.npr.cloud.redacteddata.com:9093
+  kafka-brokers: kafka:9092
   insert-topic: archive-insert-rps-lt.gcpnpr
   case-topic: archive-case-rps-lt.gcpnpr
   tenant-topic: archive-tenant-rps-lt.gcpnpr
