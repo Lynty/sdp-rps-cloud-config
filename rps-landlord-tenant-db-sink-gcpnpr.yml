@@ -8,9 +8,9 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: "redacted:postgresql://10.10.10.10:5474/redacted"
-    username: criminaldb_app
-    password: "REDACTED"
+    url: "db:5432"
+    username: postgres
+    password: "example"
     driverClassName: org.postgresql.Driver
     hikari:
       connection-timeout: 60000
@@ -195,7 +195,7 @@ spring:
                   retries: 2147483647
 
 kafka-properties:
-  schema-registry-path: kafka:9092
+  schema-registry-path: schema-registry:8081
   kafka-brokers: kafka:9092
   insert-topic: archive-insert-rps-lt.gcpnpr
   case-topic: archive-case-rps-lt.gcpnpr
