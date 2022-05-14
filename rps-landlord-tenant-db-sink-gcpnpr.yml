@@ -199,11 +199,11 @@ kafka-properties:
   kafka-brokers: kafka:9092
     #insert-topic: archive-insert-rps-lt.gcpnpr
   insert-topic: test5
-  case-topic: archive-case-rps-lt.gcpnpr
-  tenant-topic: archive-tenant-rps-lt.gcpnpr
-  history-topic: archive-history-rps-lt.gcpnpr
-  ssn-topic: archive-ssn-rps-lt.gcpnpr
-  update-topic: archive-update-rps-lt.gcpnpr
-  suppress-topic: archive-rejected-rps-lt.gcpnpr
-  group: rps-landlord-tenant-db-sink-group-gcpnpr
+  case-topic: test5
+  tenant-topic: test5
+  history-topic: test5
+  ssn-topic: test5
+  update-topic: test5
+  suppress-topic: test5
+    #group: rps-landlord-tenant-db-sink-group-gcpnpr
   message-size: 15728640
