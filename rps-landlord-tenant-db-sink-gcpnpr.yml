@@ -205,5 +205,5 @@ kafka-properties:
   ssn-topic: test5
   update-topic: test5
   suppress-topic: test5
-    #group: rps-landlord-tenant-db-sink-group-gcpnpr
+  group: rps-landlord-tenant-db-sink-group-gcpnpr
   message-size: 15728640
