@@ -198,7 +198,7 @@ kafka-properties:
   schema-registry-path: http://schema-registry:8081
   kafka-brokers: kafka:9092
     #insert-topic: archive-insert-rps-lt.gcpnpr
-  insert-topic: test4
+  insert-topic: test5
   case-topic: archive-case-rps-lt.gcpnpr
   tenant-topic: archive-tenant-rps-lt.gcpnpr
   history-topic: archive-history-rps-lt.gcpnpr
