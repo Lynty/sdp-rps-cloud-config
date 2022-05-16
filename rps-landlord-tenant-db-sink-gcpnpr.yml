@@ -98,7 +98,7 @@ spring:
           insert-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -112,7 +112,7 @@ spring:
           update-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -126,7 +126,7 @@ spring:
           insertCase-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -140,7 +140,7 @@ spring:
           insertTenant-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -154,7 +154,7 @@ spring:
           insertHistory-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -168,7 +168,7 @@ spring:
           insertSsn-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -182,7 +182,7 @@ spring:
           suppress-in-0:
             consumer:
               enableDlq: true
-              dlqName: archive-error-rps-lt.gcpnpr
+              dlqName: test8
               autoCommitOnError: true
               dlq-producer-properties:
                 configuration:
@@ -198,12 +198,12 @@ kafka-properties:
   schema-registry-path: http://schema-registry:8081
   kafka-brokers: kafka:9092
     #insert-topic: archive-insert-rps-lt.gcpnpr
-  insert-topic: test5
-  case-topic: test5
-  tenant-topic: test5
-  history-topic: test5
+  insert-topic: test1
+  case-topic: test2
+  tenant-topic: test3
+  history-topic: test4
   ssn-topic: test5
-  update-topic: test5
-  suppress-topic: test5
+  update-topic: test6
+  suppress-topic: test7
   group: rps-landlord-tenant-db-sink-group-gcpnpr
   message-size: 15728640
